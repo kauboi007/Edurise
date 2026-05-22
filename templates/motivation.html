@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Motivation</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f7f8fb; }
+    h1 { color: #2c3e50; }
+    .event { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: #fff; }
+    .quote { margin-top: 40px; padding: 20px; border-radius: 8px; background: #eef; }
+  </style>
+</head>
+<body>
+  <h1>🌟 Upcoming Events</h1>
+
+  {% for event in events %}
+    <div class="event">
+      <h3><a href="{{ event.url }}" target="_blank">{{ event.title }}</a></h3>
+      <p><strong>Date:</strong> {{ event.date }}</p>
+      <p><strong>Location:</strong> {{ event.location }}</p>
+    </div>
+  {% endfor %}
+
+  <div class="quote">
+    <h2>Daily Motivation</h2>
+    <blockquote>"{{ quote.text }}"</blockquote>
+    <p>— {{ quote.author }}</p>
+  </div>
+</body>
+</html>

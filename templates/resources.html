@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Learning Resources</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <a href="/" class="back-btn">⬅ Back to Home</a>
+  <h1>Learning Resources</h1>
+
+  <form method="POST">
+    <input type="text" name="query" value="{{ query }}" placeholder="Search topics..." required>
+    <button type="submit">Search</button>
+  </form>
+
+  {% if query %}
+    <div class="box">
+      <h2>Notes for "{{ query }}"</h2>
+      {% if notes %}
+        <ul>
+          {% for note in notes %}
+          <li><a href="{{ note.url }}" target="_blank">{{ note.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No notes found.</p>
+      {% endif %}
+    </div>
+
+    <div class="box">
+      <h2>Educational Videos for "{{ query }}"</h2>
+      {% if videos %}
+        <ul>
+          {% for video in videos %}
+          <li><a href="{{ video.url }}" target="_blank">{{ video.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No videos found.</p>
+      {% endif %}
+    </div>
+  {% endif %}
+</body>
+</html>

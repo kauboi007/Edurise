@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduRise</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% if request.endpoint != 'home' %}
+  <nav class="navbar">
+    <a href="/">Home</a>
+    <a href="/resources">Resources</a>
+    <a href="/career">Career Guidance</a>
+    <a href="/mentor">Mentor Matching</a>
+    <a href="/events">Events</a>
+  </nav>
+  {% endif %}
+
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

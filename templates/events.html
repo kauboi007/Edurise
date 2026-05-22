@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Local Events</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <a href="/" class="back-btn">⬅ Back to Home</a>
+  <h1>Local Events in Chennai</h1>
+
+  {% if events %}
+    <ul>
+      {% for e in events %}
+      <li>
+        <strong>{{ e.title }}</strong><br>
+        {{ e.date }} - {{ e.location }}<br>
+        <a href="{{ e.url }}" target="_blank">View Details</a>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No events found.</p>
+  {% endif %}
+</body>
+</html>

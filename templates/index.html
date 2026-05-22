@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EduRise</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>EduRise</h1>
+    <p>"{{ quote.text }}" — {{ quote.author }}</p>
+  </header>
+
+  <div class="container">
+    <a href="/resources" class="back-btn">📘 Learning Resources</a>
+    <a href="/career" class="back-btn">🎯 Career Guidance</a>
+    <a href="/mentor" class="back-btn">👩‍🏫 Mentor Matching</a>
+    <a href="/events" class="back-btn">📅 Local Events</a>
+  </div>
+</body>
+</html>

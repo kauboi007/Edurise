@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Career Guidance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <a href="/" class="back-btn">⬅ Back to Home</a>
+  <h1>Career Guidance</h1>
+
+  <form method="POST">
+    <label>Career Goal:</label><br>
+    <input type="text" name="career" placeholder="e.g. Data Scientist" required><br><br>
+
+    <label>Your Skills (comma separated):</label><br>
+    <input type="text" name="skills" placeholder="e.g. Python, SQL"><br><br>
+
+    <button type="submit">Check</button>
+  </form>
+
+  {% if result %}
+    <div class="box">
+      <h3>✅ You already have:</h3>
+      <p>{{ result.have | join(", ") if result.have else "None" }}</p>
+    </div>
+    <div class="box">
+      <h3>❌ You need to learn:</h3>
+      <p>{{ result.missing | join(", ") if result.missing else "None" }}</p>
+    </div>
+  {% endif %}
+</body>
+</html>
