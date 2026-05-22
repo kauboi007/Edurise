@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from services.hack_the_gap_2 import search_notes, search_youtube
 from services.hack_the_gap_3 import career_guidance
 import services.prabanjan_mentor_match as mentor_module
-from services.vishnu_events import fetch_events as vishnu_events
 import random
 
 app = Flask(__name__)
@@ -68,8 +67,9 @@ def mentor_upload():
 # ---------------- LOCAL EVENTS ----------------
 @app.route("/events")
 def events():
-    events = vishnu_events()
-    return render_template("events.html", events=events)
+    # Redirect to AllEvents website with filters for Chennai educational events
+    all_events_url = "https://allevents.in/chennai/education"
+    return redirect(all_events_url)
 
 # ---------------- MAIN ----------------
 if __name__ == "__main__":

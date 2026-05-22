@@ -11,15 +11,27 @@ ALL_EVENTS_KEY = os.getenv("ALL_EVENTS_KEY", "")
 
 # --- Fetch all events in Chennai ---
 def fetch_events():
-    url = "https://api.allevents.in/events/list/"
+    # If no API key is provided, use fallback events
+    if not ALL_EVENTS_KEY:
+        print("AllEvents API key not configured. Using fallback events.")
+        return fallback_events()
+    
+    # Using AllEvents API with proper parameters
+    # Format: POST http://api.allevents.in/events/list/[city][state][country][page][sdate][edate][category]
+    city = "Chennai"
+    state = "Tamil Nadu"
+    country = "India"
+    page = 1
+    category = "education"  # Filter for educational events
+    
+    url = f"http://api.allevents.in/events/list/{city}/{state}/{country}/{page}/{category}"
+    
     params = {
-        "city": "Chennai",
-        "country": "India",
-        "key": ALL_EVENTS_KEY,
-        "page": 1
+        "key": ALL_EVENTS_KEY
     }
     try:
-        r = requests.get(url, params=params)
+        # Using POST request as per API documentation
+        r = requests.post(url, params=params, timeout=10)
         r.raise_for_status()
         data = r.json()
         events = []
